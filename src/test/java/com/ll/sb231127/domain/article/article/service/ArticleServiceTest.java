@@ -34,10 +34,9 @@ public class ArticleServiceTest {
     @Test
     void t2() {
         Article article = articleService.findById(1L).get();
-        long authorId = article.getAuthorId();
 
-        Member member = memberService.findById(authorId).get();
+        Member author = article.getAuthor();
 
-        assertThat(member.getUsername()).isEqualTo("user1");
+        assertThat(author.getUsername()).isEqualTo("user1");
     }
 }
