@@ -12,6 +12,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.FetchType.LAZY;
@@ -58,5 +59,21 @@ public class Article extends BaseEntity {
                 .content(tagContent)
                 .build();
         tags.add(tag);
+    }
+    public void addTag(String... tagContents) {
+        for (String tagContent : tagContents) {
+            addTag(tagContent);
+        }
+    }
+    public String getTagsStr() {
+        String tagStr = tags
+                .stream()
+                .map(ArticleTag::getContent)
+                .collect(Collectors.joining(" #"));
+
+        if (tagStr.isBlank()) {
+            return "";
+        }
+        return "#" + tagStr;
     }
 }
