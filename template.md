@@ -18,11 +18,44 @@
 15. N+1 문제 -> 군대에 비유 / 소대원 소환 명령1번 / 100번~1번까지 삽 달라고 명령 / 요청을 덜어주기 위해 N+1 /101,201,301
 16. addTag 사용,구현, 가변 파라미터
 17. 게시물 태그를 #으로 구분하여 하나의 문자열로 반환(getTagsStr) 메서드 구현
-18. ```
+18. ```sql
     # 1번 글의 태그를 하나의 문자열로 합치는 SQL
     SELECT CONCAT("#", GROUP_CONCAT(content SEPARATOR ' #'))
     FROM article_tag
     WHERE article_id = 1;
     ```
 19. Article 클래스의 OneToMany 필드들에 @ToString.Exclude 추가하여 재귀적인 무한 호출 방지 
-20. @
+20. @EqualsAndHashCode(onlyExplicitlyIncluded = true) 설정하면 Include 필드만으로 동등성 비교
+21. 1번 회원이 쓴 댓글 찾는 SQL 
+22. ```sql
+    SELECT *
+    FROM article_comment
+    WHERE author_id = 1;
+    ```
+23. 1번 회원이 게시물들에 추가한 태그들을 찾는 SQL
+24. ```sql
+    SELECT ATG.content
+    FROM article AS A
+    INNER JOIN article_tag AS ATG
+    ON A.id = ATG.article_id
+    WHERE A.author_id = 1;
+    ```
+25. 1번 회원이 작성한 댓글 찾기, ArticleComment 에 author필드가 있으니 쉽다. \
+26. 1번 회원이 게시물에 추가한 태그 찾기, findByArticle_authorOd 도입 
+27. 리포지터리 메서드 
+28. ```
+    public List<ArticleTag> findByAuthorId(long authorId) {
+    return articleTagRepository.findByArticle_authorId(authorId);
+    }
+    ```
+29. 실제로 실행되는 SQL 
+30. ```sql
+    SELECT ATG.*
+    FROM article_tag AS ATG
+    LEFT JOIN article AS A
+    ON ATG.article_id = A.id
+    WHERE A.author_id = 1;
+    ```
+31. 아이디가 user1인 회원이 게시물에 추가한 태그 찾기, findByArticle_author_username 도입
+32. 
+    
