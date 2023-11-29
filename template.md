@@ -24,4 +24,5 @@
     FROM article_tag
     WHERE article_id = 1;
     ```
-19. 
+19. Article 클래스의 OneToMany 필드들에 @ToString.Exclude 추가하여 재귀적인 무한 호출 방지 
+20. @
