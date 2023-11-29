@@ -1,6 +1,7 @@
 package com.ll.sb231127.domain.article.article.service;
 
 import com.ll.sb231127.domain.article.article.entity.Article;
+import com.ll.sb231127.domain.article.articleComment.entity.ArticleComment;
 import com.ll.sb231127.domain.member.member.entity.Member;
 import com.ll.sb231127.domain.member.member.service.MemberService;
 import com.ll.sb231127.global.rsData.RsData;
@@ -58,5 +59,23 @@ public class ArticleServiceTest {
         Article article_ = articleService.findById(1L).get();
 
         assertThat(article_.getTitle()).isEqualTo("수정된 제목");
+    }
+    @DisplayName("1번 글의 댓글들을 수정한다.")
+    @Test
+    void t5() {
+        Article article = articleService.findById(1L).get();
+
+        article.getComments().forEach(comment -> {
+            articleService.modifyComment(comment, comment.getBody() + "!!");
+        });
+    }
+    @DisplayName("1번 글의 댓글 중 마지막 것을 삭제한다.")
+    @Test
+    void t6() {
+        Article article = articleService.findById(1L).get();
+
+        ArticleComment lastComment = article.getComments().getLast();
+
+        article.removeComment(lastComment);
     }
 }

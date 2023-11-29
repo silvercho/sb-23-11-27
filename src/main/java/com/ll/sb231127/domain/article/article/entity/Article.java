@@ -29,7 +29,7 @@ public class Article extends BaseEntity {
     private String title;
     private String body;
 
-    @OneToMany(mappedBy = "article", cascade = ALL)
+    @OneToMany(mappedBy = "article", cascade = ALL, orphanRemoval = true)
     @Builder.Default
     private List<ArticleComment> comments = new ArrayList<>();
 
@@ -41,5 +41,8 @@ public class Article extends BaseEntity {
                 .body(commentBody)
                 .build();
         comments.add(comment);
+    }
+    public void removeComment(ArticleComment comment){
+        comments.remove(comment);
     }
 }

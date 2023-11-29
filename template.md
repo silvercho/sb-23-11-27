@@ -8,4 +8,7 @@
 6. @CreatedDate 를 도입하여 객체저장 (Insert) 시에 createDate 를 수동으로 갱신 안해도됨. 
 7. 트랜잭션이 끝날 때 더티 체킹이라는 기술을 통해서 해당 엔티티가 변경되었는지 파악 하고 변경되었다면 자동으로 SQL UPDATE를 실행하게 된다.
 8. @LastModifyDate 를 도입하여 객제저장 (Update) 시에 modifyDate 를 수동으로 갱신 안해도 됨.
-9. 
+9. ArticleCommet 엔티티추가 , Article 입장에서 OneToMany 관계.
+10. 트랜잭션을 2개로 나눠보고 -> 실패해함 이유는 @Transaction이 붙은 메서드는 객체 외부에서 호출되어야 작동하기 때문.
+11. @Autowired , @Lazy privae NotProd self 을 통해서 내부호출이라도 트랜잭션을 작동시킬수 있음 
+12. @OneToMany(mappedBy = "article" , cascade=ALL,orphanRemoval=true) 을 통해 댓글 삭제 
