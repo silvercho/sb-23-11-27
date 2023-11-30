@@ -78,4 +78,8 @@
 38. 스프링 WEB , 타임리프 의존성 추가    
 39. 게시물 리스트 articleController "/article/list"
 40. test모드와 달리 dev 모드에서는 NotProd 의 샘플 데이터 생성 코드가 1번만 실행되도록 
-41. 
+41. 39강 샘플 데이터 늘리고 테이블 형태로 게시물 목록 출력 / 하드코딩으로 페이지 메뉴 구현 
+42. 타임리프 반복문과 itemsPage.toatalPages 를 사용하여 올바른 페이지 구현 
+43. kwType 파라미터가 여러개 들어오는데 List 형태로 받음 , map 형태로 변경
+44. 40강 순수 JPA 메서드로 검색 구현 , 제목,내용,작성자명 , 조건 체크 
+45. QueryDSL 라이브러리 로드, ArticleRepository 에 QueryDSL 적용
