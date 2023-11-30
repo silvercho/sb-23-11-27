@@ -30,6 +30,7 @@ public class ArticleController {
     public String list(
             @RequestParam(value = "kwType" , defaultValue = "")
                     List<String> kwTypes,
+            @RequestParam(defaultValue = "") String kw,
             @RequestParam(defaultValue = "0") int page,
             Model model
     ) {
@@ -44,7 +45,7 @@ public class ArticleController {
                         kwType -> true
                 ));
 
-        Page<Article> itemsPage = articleService.search(pageable);
+        Page<Article> itemsPage = articleService.search(kwTypes, kw, pageable);
         model.addAttribute("itemsPage" , itemsPage);
         model.addAttribute("kwTypesMap", kwTypesMap);
 
