@@ -57,5 +57,22 @@
     WHERE A.author_id = 1;
     ```
 31. 아이디가 user1인 회원이 게시물에 추가한 태그 찾기, findByArticle_author_username 도입
-32. 
+32. 리포지터리 메서드
+33. ```
+    public List<ArticleTag> findByAuthorUsername(String username) {
+    return articleTagRepository.findByArticle_author_username(username);
+    }
+    ```
+34. 실제로 실행되는 SQL 
+35. ```sql
+    SELECT ATG.*
+    FROM article_tag AS ATG
+    LEFT JOIN article AS A
+    ON ATG.article_id = A.id
+    LEFT JOIN `member` AS M
+    ON A.author_id = M.id
+    WHERE M.username = 'user1';
+    ```
+36. 엔티티 클래스에 한번 정해지면 변하지 않는 필드들은 얼마든지 추가가능.(33강)
+37. 
     
