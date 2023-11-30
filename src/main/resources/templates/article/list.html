@@ -11,6 +11,19 @@
     }
 </style>
 
+<form>
+    <div style="display:flex; gap:10px;">
+        <label><input type="checkbox" name="kwType" value="authorUsername"><span>작성자</span></label>
+        <label><input type="checkbox" name="kwType" value="title" checked><span>제목</span></label>
+        <label><input type="checkbox" name="kwType" value="body" checked><span>내용</span></label>
+        <label><input type="checkbox" name="kwType" value="tagContent"><span>태그</span></label>
+        <label><input type="checkbox" name="kwType" value="commentAuthorUsername"><span>댓글 작성자</span></label>
+        <label><input type="checkbox" name="kwType" value="commentBody"><span>댓글 내용</span></label>
+    </div>
+    <input type="search" name="kw" placeholder="검색어">
+    <input type="submit" value="검색">
+</form>
+
 <div>
     <table class="table-1">
         <thead>
@@ -39,12 +52,8 @@
 
 <hr>
 
-<div>
-    <a href="?page=0">0</a>
-    <a href="?page=1">1</a>
-    <a href="?page=2">2</a>
-    <a href="?page=3">3</a>
-    <a href="?page=4">4</a>
+<div style="display:flex; gap:10px;">
+    <a th:each="num : ${#numbers.sequence(0, itemsPage.totalPages - 1)}" th:href="|?page=${num}|" th:text="${num}"></a>
 </div>
 
 <hr>
