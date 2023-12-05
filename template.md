@@ -83,3 +83,9 @@
 43. kwType 파라미터가 여러개 들어오는데 List 형태로 받음 , map 형태로 변경
 44. 40강 순수 JPA 메서드로 검색 구현 , 제목,내용,작성자명 , 조건 체크 
 45. QueryDSL 라이브러리 로드, ArticleRepository 에 QueryDSL 적용
+46.  ArticleRepositoryCustom, ArticleRepositoryImpl 클래스 추가
+47. SQL : http://localhost:8080/article/list?kwType=authorUsername&kwType=title&kwType=body&kw=3
+48. QueryDSL은 자바로 SQL 을 짤 수 있게 해준다. 44강까지 
+49. 45강 기본 옵션과 설정, 빈 검색 옵션으로는 검색을 못하도록 자바스크립트로 체크
+50. 만약에 검색어가 없으면 , 검색조건이 있어도 JOIN 이 발생하지 않도록 
+51. JPA 에서는 페이지를 0부터 시작하지만 , 사용자에게 보여질때는 1부터 시작하도록 변경

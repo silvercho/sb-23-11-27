@@ -8,11 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -37,13 +35,11 @@ public class ArticleService {
         article.setTitle(title);
         article.setBody(body);
     }
-
     public List<Article> findAll() {
         return articleRepository.findByOrderByIdDesc();
     }
 
     public Page<Article> search(List<String> kwTypes, String kw, Pageable pageable) {
-
-        return articleRepository.findAll(pageable);
+        return articleRepository.search(kwTypes, kw, pageable);
     }
 }
